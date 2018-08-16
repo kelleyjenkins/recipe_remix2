@@ -1,12 +1,18 @@
 <h1> Enter Ingredients </h1>
 
 <div class="search_form">
-  <%= form_tag method: :get, class: "form-inline" do %>
+  <%= form_tag :root, method: :get, class: "form-inline" do %>
           <div class="form-group search-field">
-            <%= text_field_tag :q1, "Ingredient", class: "form-control" %>
-            <%= text_field_tag :q2, "Ingredient", class: "form-control" %>
-            <%= text_field_tag :q3, "Ingredient", class: "form-control" %>
+            <%= text_field_tag "q[]", "Ingredient", class: "form-control", multiple: true %>
+            <%= text_field_tag "q[]", "Ingredient", class: "form-control", multiple: true %>
+            <%= text_field_tag "q[]", "Ingredient", class: "form-control", multiple: true %>
             <%= submit_tag "Find Recipes", class: "btn btn-primary" %>
           </div>
           <% end %>
+</div>
+
+<div class="recipes">
+  <% @results.each do |recipe| %>
+  <%= recipe.name %>
+  <% end %>
 </div>
